@@ -8,7 +8,7 @@ import TweetEmbed from './TweetEmbed';
 
 export const TWEET_QUERY = `
 {
-    queryTweets {
+    queryTweets(order: { $sortOrder : $sortField }) {
         id
         text
     }
@@ -53,7 +53,7 @@ export default function BasicTweetView({ authenticated, onKeyChange }) {
     }
 
     const generateQuery = () => {
-        return TWEET_QUERY; //replaceSortVars(TWEET_QUERY).replace("$filters", generateFilters());
+        return replaceSortVars(TWEET_QUERY); //replaceSortVars(TWEET_QUERY).replace("$filters", generateFilters());
     }
 
     const resetFeed = () => {
